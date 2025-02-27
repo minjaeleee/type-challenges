@@ -3,4 +3,7 @@
 // 3. T에 K가 key 값이 존재하지 않은 경우, 그대로 키-밸류 생성
 
 type MyReadonly2<T, K extends keyof T = keyof T> = {
+  readonly [P in K]: T[P];
+} & {
+  [P in Exclude<keyof T, K>]: T[P] ;
 }
